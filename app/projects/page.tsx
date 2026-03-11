@@ -1,36 +1,7 @@
 import Link from 'next/link'
 import { ArrowRight, Code } from 'lucide-react'
 
-const projects = [
-  {
-    id: "exam-generation",
-    title: "Exam Generation & Analysis System",
-    description: "An automated system to generate and analyze exams, leveraging NLP for question extraction and ML for difficulty estimation.",
-    tech: ["Python", "FastAPI", "React", "PostgreSQL"],
-    href: "/projects/exam-generation"
-  },
-  {
-    id: "pillcare",
-    title: "PillCare",
-    description: "CNN and OCR based pill identification system to assist visually impaired individuals and elderly patients.",
-    tech: ["PyTorch", "OpenCV", "Tesseract", "React Native"],
-    href: "/projects/pillcare"
-  },
-  {
-    id: "xr-vertebrate",
-    title: "XR Vertebrate Visualization",
-    description: "An immersive Unity-based XR application for exploring and visualizing vertebrate anatomy using augmented reality.",
-    tech: ["Unity", "C#", "AR Foundation", "Blender"],
-    href: "/projects/xr-vertebrate"
-  },
-  {
-    id: "burnout-detection",
-    title: "Developer Burnout Detection Research",
-    description: "A research project to detect signs of burnout in developers through their GitHub and Slack activity patterns.",
-    tech: ["Scikit-Learn", "Pandas", "GitHub API", "Slack API"],
-    href: "/projects/burnout-detection"
-  }
-]
+import { projectsData } from './data'
 
 export default function Projects() {
   return (
@@ -42,10 +13,10 @@ export default function Projects() {
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {projects.map((project) => (
+          {projectsData.map((project) => (
             <Link 
               key={project.id} 
-              href={project.href}
+              href={`/projects/${project.slug}`}
               className="group flex flex-col justify-between p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors"
             >
               <div>
