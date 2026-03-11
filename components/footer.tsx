@@ -11,10 +11,10 @@ export function Footer() {
           <a href="https://github.com/d2r3v" target="_blank" rel="noreferrer" className="hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors">
             <Github className="h-5 w-5" />
           </a>
-          <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors">
+          <a href="https://linkedin.com/in/d2r3v" target="_blank" rel="noreferrer" className="hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors">
             <Linkedin className="h-5 w-5" />
           </a>
-          <a href="mailto:contact@example.com" className="hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors">
+          <a href="mailto:drv792@gmail.com" className="hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors">
             <Mail className="h-5 w-5" />
           </a>
         </div>

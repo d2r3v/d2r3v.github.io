@@ -28,3 +28,4 @@
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+/docs/Dhruv_Bhardwaj_SWE.pdf
