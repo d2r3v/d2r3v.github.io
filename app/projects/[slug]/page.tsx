@@ -50,6 +50,12 @@ export default async function ProjectCaseStudy({ params }: { params: Promise<{ s
               Live Demo
             </a>
           )}
+          {project.reportUrl && (
+            <a href={project.reportUrl} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center h-12 px-6 font-medium border border-zinc-200 dark:border-zinc-800 bg-transparent hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors text-zinc-900 dark:text-zinc-50 rounded-lg">
+              <ExternalLink className="mr-2 h-5 w-5" />
+              Read Full Report
+            </a>
+          )}
         </div>
 
         <div className="space-y-12">

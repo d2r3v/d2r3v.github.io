@@ -14,31 +14,61 @@ export type Project = {
   tech: string[]
   githubUrl: string
   demoUrl?: string
+  reportUrl?: string
 }
 
 export const projectsData: Project[] = [
   {
     id: "exam-generation",
     slug: "exam-generation-analysis",
-    title: "Exam Generation & Analysis System",
-    description: "Production-grade system for generating exam variants and grading OMR responses. Built on Node.js microservices with tRPC and PostgreSQL.",
-    overview: "A full-stack distributed system built to manage high-stakes exam workflows for large student cohorts. The system automates exam variant generation to mitigate cheating and features a snapshot-based grading engine. This ensures grading logic and historical student submissions remain perfectly consistent even if subsequent edits are made to the base exam. Additional pipelines perform cross-variant cheating detection by statistically analyzing student answer similarities and compute item discrimination indexes for instructors.",
-    architecture: "- React frontend delivering the instructor analytics dashboard\n- Node.js backend configured as independent microservices\n- tRPC layer providing strict end-to-end type safety\n- PostgreSQL database leveraging Prisma ORM for schema management\n- Snapshot-based entities to immutably link submissions to specific exam variants",
-    decisions: "- Decoupled the resource-heavy variant generation and grading pipelines into isolated microservices to support horizontal scaling during peak exam seasons.\n- Adopted tRPC to eliminate API boundary errors between the React client and Node backend.\n- Engineered snapshot-based data models in PostgreSQL to guarantee historical integrity of student submissions against mutating exam definitions.",
-    impact: "Designed to handle real-world academic loads, drastically reducing manual grading hours and providing actionable statistical insights on exam fairness to instructors.",
+    title: "Scalable Exam Generation & Analytics Platform (Microservices + Data Pipelines)",
+    summary: "A scalable full-stack distributed system built to manage high-stakes exam workflows for large university courses. It generates randomized exam variants, manages thousands of student OMR responses, and runs advanced analytical grading pipelines to detect anomalies.",
+    contributions: [
+      "Architected a type-safe microservice backend (Auth, Account, Exam Gen, Analytics) using tRPC and PostgreSQL.",
+      "Built a robust data ingestion pipeline that parses, validates, and structurally maps messy CSV OMR responses to student records.",
+      "Implemented a deterministic grading engine with partial credit and negative marking rules, creating snapshot-based models for reproducible grading.",
+      "Engineered an advanced algorithmic Cheating Detection System that flags anomalous scores through cross-variant answer correlations."
+    ],
+    diagram: `Instructor → API Gateway → Microservices → PostgreSQL → Analytics Engine`,
+    standoutSections: [
+      {
+        title: "Algorithmic Cheating Detection Engine",
+        content: "A core capability of the system is applied statistical anomaly detection. Rather than relying on simple metadata, the pipeline conducts cross-variant answer comparisons. It actively regrades students against incorrectly shifted answer keys to track specific statistical similarities, utilizing risk scoring to surface potential academic misconduct purely from OMR data patterns."
+      },
+      {
+        title: "System Scale & Engineering Depth",
+        content: "The platform is built to handle heavy concurrent workflows for exams involving 1,000+ students. It relies on a strictly typed, full-stack architecture running Node.js and React. On the database layer, we enforce strict multi-tenant isolation using PostgreSQL Row-Level Security (RLS) and guarantee audit-safe historic integrity by maintaining immutable snapshots of exams mapped to specific student submissions."
+      }
+    ],
     tech: ["Node.js", "TypeScript", "tRPC", "PostgreSQL", "Prisma", "React", "Microservices"],
     githubUrl: "https://github.com/d2r3v",
+    reportUrl: "/Exam_Gen_Project_Report.pdf"
   },
   {
     id: "xr-vertebrate",
     slug: "xr-vertebrate-visualization",
-    title: "XR Vertebrate Visualization",
-    description: "An immersive Unity/C# spatial computing application deployed to 100+ students for interactive anatomy learning.",
-    overview: "A spatial computing application engineered in Unity and C# to visualize complex vertebrate anatomy in an immersive classroom environment. Moving beyond simple 3D viewers, this project required optimizing dense anatomical models for mobile XR hardware while maintaining the strict frame-rate requirements necessary to prevent user motion sickness.",
-    architecture: "- Unity and C# application compiled for standalone XR hardware (ARKit/ARCore)\n- Distributed rendering integration to offload high-polygon processing\n- Custom hardware input pipelines tailored for XR controllers and spatial navigation\n- Deployed in a live classroom research setting",
-    decisions: "Implemented custom hardware input pipelines to ensure spatial interactions felt intuitive and precise when manipulating intricate 3D bone structures. Integrated a distributed rendering model to stream high-fidelity assets to mobile XR headsets, bypassing the compute limitations of the physical headsets and maintaining a steady 60+ FPS.",
-    impact: "Successfully deployed and rigorously tested in a real-world classroom environment with over 100 students, validating the application's stability and its measurable improvement on spatial anatomical comprehension.",
-    tech: ["Unity", "C#", "XR SDKs", "Distributed Rendering", "Blender"],
+    title: "Interactive 3D Vertebrate Learning System (XR + Large-Scale Visualization)",
+    summary: "An interactive 3D anatomy system built to address declining specimen availability in biology labs. It enables 100+ students to explore high-fidelity vertebrate models without physical dissection, supporting both large-scale video wall displays and remote learning workflows.",
+    contributions: [
+      "Dynamic Model Loading Pipeline: Built a folder-based workspace system enabling seamless runtime switching between datasets, removing the need for manual application restarts during lectures.",
+      "Interaction & Navigation System: Designed intuitive controls prioritizing consistency and low cognitive load, allowing for smooth 3D rotation, pose switching, and controlled navigation.",
+      "Usability-Driven UI Optimization: Conducted iterative testing to solve motion sickness by introducing a stable reference base, and improved visibility via high-contrast backgrounds and edge outlines.",
+      "Large-Scale Display Adaptation: Optimized visual contrast, rendering parameters, and camera behavior specifically for a high-resolution video wall environment."
+    ],
+    diagram: `User Input → Interaction Layer → 3D Model Controller → Rendering (Video Wall / Local)
+                                 ↓
+                          Model Pipeline System`,
+    standoutSections: [
+      {
+        title: "Explored System Extensions & Tradeoffs",
+        content: "CROSS-DEVICE ACCESSIBILITY (WEB-BASED RENDERING)\nGoal: Make the system accessible without high-end hardware.\nApproach: Explored WebSockets and remote rendering. Due to the high infrastructure cost, we opted to use Sketchfab instead, achieving ~90% of accessibility goals with minimal engineering overhead, trading custom guided labs for scalability.\n\nMOBILE-BASED CONTROLLER (GYROSCOPE INTERACTION)\nGoal: Replace traditional input with mobile controls via QR code.\nTech: Explored real-time sensor streaming over Firebase.\nOutcome: Deferred implementation because real-time synchronization scaling in a dense lab setting added too much complexity. Key insight: Interaction design must balance novelty with reliability in teaching environments."
+      },
+      {
+        title: "Reliability & Interaction Design Challenges",
+        content: "CONTROLLER RELIABILITY UNDER LOAD\nProblem: Bluetooth controllers frequently disconnected in high-density labs, causing erratic model behavior.\nSolution: We implemented software-level input validation, added fallbacks, and enforced safe defaults upon signal loss, significantly stabilizing the system.\n\nDESIGNING FOR DIFFERENT USER MENTAL MODELS\nObservation: Usability tests showed that older instructors preferred structured, predictable actions, whereas younger students preferred fluid, direct manipulation.\nApproach: We iterated on control schemes to balance simplicity, responsiveness, and predictability—proving that 'intuitive' design is context-dependent."
+      }
+    ],
+    tech: ["Unity", "C#", "XR SDKs", "Sketchfab", "Distributed Rendering", "UX Design"],
     githubUrl: "https://github.com/d2r3v",
   },
   {
@@ -78,13 +108,26 @@ export const projectsData: Project[] = [
   {
     id: "burnout-detection",
     slug: "developer-burnout-detection",
-    title: "Developer Burnout Detection Research",
-    description: "Data engineering pipeline analyzing GitHub activity logs using Isolation Forests to detect early signals of developer burnout.",
-    overview: "A reproducible data science pipeline focused on analyzing developer well-being without intruding on privacy. The project ingests extensive behavioral telemetry to identify statistical anomalies that precede developer burnout, transforming raw logs into actionable predictive indicators.",
-    architecture: "- Automated data ingestion pipelines interfacing with the GitHub API\n- NLP sentiment analysis running on commit messages and pull request discussions\n- Statistical anomaly detection powered by Isolation Forest algorithms\n- Structured data cleaning and feature engineering pipelines in Python",
-    decisions: "Built robust data ingestion pipelines in Pandas to normalize asynchronous event logs from GitHub. Selected an Isolation Forest model for anomaly detection because it reliably highlights non-standard behavioral patterns (e.g., weekend commits, context switching) without the prohibitive requirement of a massive, manually labeled \"burnout\" dataset. Layered NLP sentiment analysis to correlate negative communication patterns with activity spikes.",
-    impact: "Established a scalable, privacy-respecting research pipeline capable of predicting high-risk burnout patterns before they manifest as critical engineering turnover.",
+    title: "Detecting Developer Burnout from GitHub Activity (Data + ML Pipeline)",
+    summary: "Built a system that detects early burnout signals from developer activity data by analyzing behavioral patterns like late-night work, inconsistent activity, and sudden drop-offs rather than relying on delayed self-reporting surveys.",
+    contributions: [
+      "Data Pipeline & Ingestion: Built a time-series data pipeline using the GitHub API to ingest commit data, filter bots, and normalize time zones from open-source startups.",
+      "Feature Extraction System: Developed an extraction pipeline for key behavioral indicators including late-night work, weekend activity, commit spikes, and sentiment signals.",
+      "Risk Scoring Function: Designed a composite burnout risk scoring system using time-series analysis without labeled data, correlating behaviors with future periods of inactivity."
+    ],
+    diagram: `GitHub API → Data Pipeline → Feature Engineering → Risk Scoring → Visualization`,
+    standoutSections: [
+      {
+        title: "Key Findings: The Surge-and-Stop Pattern",
+        content: "By visualizing and mapping out activity data over long periods, we identified a distinct \"Surge-and-Stop\" pattern: intense bursts of work are reliably followed by 2 or more weeks of complete inactivity. Time-series analysis proved that work timing (such as late-night or weekend commits) and intensity were significantly stronger predictive signals of imminent burnout than the emotional tone embedded in those commits. We also found that developers in high-responsibility roles demonstrated a higher baseline risk."
+      },
+      {
+        title: "Engineering Highlights in Unstructured Data",
+        content: "A major engineering challenge was building a reliable composite scoring system despite the absolute lack of any manually labeled 'burnout' datasets. We handled noisy text data from thousands of commit messages, navigated complex time zone normalizations across highly distributed open-source teams, and filtered out low-signal contributors and bots. The pipeline successfully transforms vast amounts of asynchronous unstructured GitHub data into a clean, actionable time-series for detecting overwork patterns."
+      }
+    ],
     tech: ["Python", "Pandas", "Scikit-learn", "GitHub API", "Isolation Forest"],
     githubUrl: "https://github.com/d2r3v",
+    reportUrl: "/Burnout_Detection.pdf"
   }
 ]

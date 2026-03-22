@@ -11,11 +11,11 @@ export default function Projects() {
         <p className="text-lg text-zinc-500 dark:text-zinc-400 mb-12 max-w-2xl">
           A selection of my recent work across backend infrastructure, machine learning, and XR systems.
         </p>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {projectsData.map((project) => (
-            <Link 
-              key={project.id} 
+            <Link
+              key={project.id}
               href={`/projects/${project.slug}`}
               className="group flex flex-col justify-between p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors"
             >
@@ -27,7 +27,7 @@ export default function Projects() {
                   {project.title}
                 </h3>
                 <p className="text-zinc-500 dark:text-zinc-400 mb-6 leading-relaxed">
-                  {project.description}
+                  {project.summary || project.description}
                 </p>
               </div>
               <div>
