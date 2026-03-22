@@ -85,18 +85,18 @@ export default function Home() {
             View all projects <ArrowRight className="ml-1 h-4 w-4" />
           </Link>
         </div>
-        
+
         <div className="flex flex-col gap-8">
           {/* Project 1 */}
-          <Link 
+          <Link
             href="/projects/exam-generation-analysis"
             className="group block p-8 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all hover:shadow-sm"
           >
             <h3 className="text-2xl font-bold mb-3 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
-              Exam Generation & Analysis System
+              Scalable Exam Generation & Analytics Platform
             </h3>
             <p className="text-lg text-zinc-500 dark:text-zinc-400 mb-6 leading-relaxed max-w-3xl">
-              Production-grade distributed system for generating exam variants and grading OMR responses. Built on Node.js microservices with tRPC and PostgreSQL.
+              Backend system for generating exam variants, processing 1000+ student OMR data, and running analytics + cheating detection pipelines.
             </p>
             <div className="flex flex-wrap gap-2 mb-8">
               {["Node.js", "TypeScript", "tRPC", "PostgreSQL", "Microservices"].map((t) => (
@@ -112,15 +112,15 @@ export default function Home() {
           </Link>
 
           {/* Project 2 */}
-          <Link 
+          <Link
             href="/projects/xr-vertebrate-visualization"
             className="group block p-8 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all hover:shadow-sm"
           >
             <h3 className="text-2xl font-bold mb-3 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
-              XR Vertebrate Visualization
+              Interactive 3D Vertebrate Learning System
             </h3>
             <p className="text-lg text-zinc-500 dark:text-zinc-400 mb-6 leading-relaxed max-w-3xl">
-              An immersive Unity/C# spatial computing application deployed to 100+ students. Features distributed rendering for high-fidelity interactive anatomy models.
+              Interactive spatial computing application built in Unity to visualize complex vertebrate anatomy, enabling 100+ students to learn interactively without physical dissection.
             </p>
             <div className="flex flex-wrap gap-2 mb-8">
               {["Unity", "C#", "XR SDKs", "Distributed Rendering"].map((t) => (
@@ -134,7 +134,7 @@ export default function Home() {
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </div>
           </Link>
-          
+
           <Link href="/projects" className="sm:hidden flex items-center justify-center h-12 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-50 font-medium mt-4">
             View all projects
           </Link>
