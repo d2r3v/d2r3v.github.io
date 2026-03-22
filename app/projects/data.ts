@@ -2,11 +2,15 @@ export type Project = {
   id: string
   slug: string
   title: string
-  description: string
-  overview: string
-  architecture: string
-  decisions: string
-  impact: string
+  description?: string
+  overview?: string
+  architecture?: string
+  decisions?: string
+  impact?: string
+  summary?: string
+  contributions?: string[]
+  diagram?: string
+  standoutSections?: { title: string; content: string }[]
   tech: string[]
   githubUrl: string
   demoUrl?: string
@@ -41,13 +45,35 @@ export const projectsData: Project[] = [
     id: "pillcare",
     slug: "pillcare",
     title: "PillCare",
-    description: "Applied ML pipeline utilizing CNNs and CRNN OCR to identify medications via smartphone cameras, integrated with OpenFDA.",
-    overview: "An applied machine learning system tackling a critical accessibility challenge: accurately identifying medications for visually impaired and elderly users. This is not a standard toy dataset project; it relies on complex multi-modal ML pipelines to fuse visual shape features with OCR text extraction, validated against real-time medical datasets.",
-    architecture: "- PyTorch/TensorFlow CNN for visual pill classification (shape, color, scoring)\n- CRNN-based OCR pipeline dedicated to reading faint or curved pill imprints\n- Live integration with the OpenFDA API for authoritative drug metadata\n- Optimized mobile interface for real-time edge or hybrid inference",
-    decisions: "Chose a dual-model architecture. A standalone CNN extracts pure visual features, while a specialized CRNN handles the difficult OCR task of reading curved, low-contrast pill imprints. Fusing these outputs significantly improved confidence scores. Bound the inference engine directly to the OpenFDA API to guarantee users receive live, federally verified medication warnings rather than static, outdated payloads.",
-    impact: "Engineered a robust assistive technology pipeline capable of handling poor lighting and varied camera angles, addressing a tangible safety need for demographics managing complex prescriptions.",
-    tech: ["TensorFlow", "PyTorch", "OpenCV", "CRNN OCR", "Python", "OpenFDA API"],
-    githubUrl: "https://github.com/d2r3v",
+    summary: "PillCare is a deep learning system that identifies medications from real-world images using both visual features and text imprints. It uses a gated fusion architecture to dynamically weigh visual vs. OCR inputs, improving identification in high-risk scenarios.",
+    contributions: [
+      "Built a multi-stage ML pipeline (preprocessing → OCR → fusion → inference)",
+      "Designed a gated fusion mechanism to reduce noisy feature influence",
+      "Implemented class-weighted training to handle severe dataset imbalance",
+      "Optimized models for edge deployment using TensorFlow Lite",
+      "Automated dataset expansion using openFDA APIs and augmentation pipelines"
+    ],
+    diagram: `Image Input
+↓
+[Vision Model: MobileNetV2] → visual features
+↓
+[OCR Model: CRNN] → text features
+↓
+[Confidence Gate] → weighs OCR usefulness
+↓
+[Fusion Layer] → final classification`,
+    standoutSections: [
+      {
+        title: "The Gated Fusion Idea",
+        content: "Most pill identification systems rely on either image classification or text lookup, which breaks down in real-world conditions (missing text, similar pills). Instead of treating vision and OCR equally, PillCare employs a confidence gate that decides when OCR should influence predictions. This allows the system to ignore OCR when no readable text exists and use it when visual ambiguity is high. This approach raised accuracy to 84% (+3.6% over vision-only)."
+      },
+      {
+        title: "Data and Class Imbalance Challenges",
+        content: "Addressing data quality provided greater returns than model complexity. A 3x offline augmentation gave the most significant improvement (+9%). Furthermore, a severe class imbalance caused the model to ignore minority classes (e.g., amoxicillin). Utilizing `compute_class_weight(\"balanced\")` combined with targeted augmentation successfully optimized cross-entropy loss across all 16 drug classes, guaranteeing non-zero recall for rare pills."
+      }
+    ],
+    tech: ["TensorFlow", "Keras", "OpenCV", "MobileNetV2", "CRNN", "OpenFDA API"],
+    githubUrl: "https://github.com/d2r3v/PillCare",
   },
   {
     id: "burnout-detection",

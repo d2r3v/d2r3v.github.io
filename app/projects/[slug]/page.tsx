@@ -22,17 +22,19 @@ export default async function ProjectCaseStudy({ params }: { params: Promise<{ s
     <div className="container mx-auto px-4 max-w-4xl py-12 md:py-20">
       <div className="animate-in fade-in slide-in-from-bottom-4 duration-1000 fill-mode-both">
         <div className="mb-12">
-          <Link 
-            href="/projects" 
+          <Link
+            href="/projects"
             className="inline-flex items-center text-sm font-medium text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors mb-8"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Projects
           </Link>
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">{project.title}</h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-300 leading-relaxed">
-            {project.description}
-          </p>
+          {(project.summary || project.description) && (
+            <p className="text-xl text-zinc-600 dark:text-zinc-300 leading-relaxed">
+              {project.summary || project.description}
+            </p>
+          )}
         </div>
 
 
@@ -51,49 +53,98 @@ export default async function ProjectCaseStudy({ params }: { params: Promise<{ s
         </div>
 
         <div className="space-y-12">
-          <section>
-            <h2 className="text-2xl font-bold mb-4 tracking-tight border-b border-zinc-200 dark:border-zinc-800 pb-2">Overview</h2>
-            <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg whitespace-pre-wrap">
-              {project.overview}
-            </p>
-          </section>
+          {project.contributions || project.diagram || project.standoutSections ? (
+            <>
+              {project.contributions && project.contributions.length > 0 && (
+                <section>
+                  <h2 className="text-2xl font-bold mb-4 tracking-tight border-b border-zinc-200 dark:border-zinc-800 pb-2">Key Contributions</h2>
+                  <ul className="list-disc pl-6 space-y-2 text-zinc-600 dark:text-zinc-400 text-lg">
+                    {project.contributions.map((contribution, i) => (
+                      <li key={i} className="leading-relaxed">
+                        {contribution}
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
 
-          <section>
-            <h2 className="text-2xl font-bold mb-4 tracking-tight border-b border-zinc-200 dark:border-zinc-800 pb-2">Architecture</h2>
-            <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg whitespace-pre-wrap">
-              {project.architecture}
-            </p>
-          </section>
+              {project.diagram && (
+                <section>
+                  <h2 className="text-2xl font-bold mb-4 tracking-tight border-b border-zinc-200 dark:border-zinc-800 pb-2">System Overview</h2>
+                  <div className="bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-6 overflow-x-auto">
+                    <pre className="text-sm font-mono text-zinc-800 dark:text-zinc-300">
+                      {project.diagram}
+                    </pre>
+                  </div>
+                </section>
+              )}
 
-          <section>
-            <h2 className="text-2xl font-bold mb-4 tracking-tight border-b border-zinc-200 dark:border-zinc-800 pb-2">Key Engineering Decisions</h2>
-            <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg whitespace-pre-wrap">
-              {project.decisions}
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-bold mb-4 tracking-tight border-b border-zinc-200 dark:border-zinc-800 pb-2">Technologies</h2>
-            <div className="flex flex-wrap gap-3">
-              {project.tech.map((t) => (
-                <span key={t} className="px-4 py-1.5 text-sm font-medium rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">
-                  {t}
-                </span>
+              {project.standoutSections && project.standoutSections.map((section, i) => (
+                <section key={i}>
+                  <h2 className="text-2xl font-bold mb-4 tracking-tight border-b border-zinc-200 dark:border-zinc-800 pb-2">{section.title}</h2>
+                  <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg whitespace-pre-wrap">
+                    {section.content}
+                  </p>
+                </section>
               ))}
-            </div>
-          </section>
+            </>
+          ) : (
+            <>
+              {project.overview && (
+                <section>
+                  <h2 className="text-2xl font-bold mb-4 tracking-tight border-b border-zinc-200 dark:border-zinc-800 pb-2">Overview</h2>
+                  <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg whitespace-pre-wrap">
+                    {project.overview}
+                  </p>
+                </section>
+              )}
 
-          <section>
-            <h2 className="text-2xl font-bold mb-4 tracking-tight border-b border-zinc-200 dark:border-zinc-800 pb-2">Impact</h2>
-            <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg whitespace-pre-wrap">
-              {project.impact}
-            </p>
-          </section>
+              {project.architecture && (
+                <section>
+                  <h2 className="text-2xl font-bold mb-4 tracking-tight border-b border-zinc-200 dark:border-zinc-800 pb-2">Architecture</h2>
+                  <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg whitespace-pre-wrap">
+                    {project.architecture}
+                  </p>
+                </section>
+              )}
+
+              {project.decisions && (
+                <section>
+                  <h2 className="text-2xl font-bold mb-4 tracking-tight border-b border-zinc-200 dark:border-zinc-800 pb-2">Key Engineering Decisions</h2>
+                  <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg whitespace-pre-wrap">
+                    {project.decisions}
+                  </p>
+                </section>
+              )}
+
+              {project.impact && (
+                <section>
+                  <h2 className="text-2xl font-bold mb-4 tracking-tight border-b border-zinc-200 dark:border-zinc-800 pb-2">Impact</h2>
+                  <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg whitespace-pre-wrap">
+                    {project.impact}
+                  </p>
+                </section>
+              )}
+            </>
+          )}
+
+          {project.tech && project.tech.length > 0 && (
+            <section>
+              <h2 className="text-2xl font-bold mb-4 tracking-tight border-b border-zinc-200 dark:border-zinc-800 pb-2">Technologies</h2>
+              <div className="flex flex-wrap gap-3">
+                {project.tech.map((t) => (
+                  <span key={t} className="px-4 py-1.5 text-sm font-medium rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </section>
+          )}
         </div>
-        
+
         <div className="mt-20 pt-8 border-t border-zinc-200 dark:border-zinc-800">
-           <Link 
-            href="/projects" 
+          <Link
+            href="/projects"
             className="inline-flex items-center font-medium text-zinc-900 hover:text-zinc-600 dark:text-zinc-50 dark:hover:text-zinc-300 transition-colors"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
