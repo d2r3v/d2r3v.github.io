@@ -12,6 +12,7 @@ export type Project = {
   metrics?: string[]
   contributions?: string[]
   diagram?: string
+  diagramTitle?: string
   visuals?: { title: string; src: string; caption: string }[]
   standoutSections?: { title: string; content: string }[]
   tech: string[]
@@ -25,18 +26,18 @@ export const projectsData: Project[] = [
     id: "exam-generation",
     slug: "exam-generation-analysis",
     title: "Scalable Exam Generation & Analytics Platform (Microservices + Data Pipelines)",
-    tagline: "Backend system handling high-volume exam workflows with integrity-critical grading",
-    summary: "Microservice-based backend platform for generating exam variants, processing large-scale OMR data, and running analytics + cheating detection pipelines.",
+    tagline: "Backend system processing 1000+ student exam submissions with automated grading, analytics, and cross-variant cheating detection.",
+    summary: "Backend system for generating exam variants, processing 1000+ student OMR data, and running analytics + cheating detection pipelines.",
     metrics: [
-      "Processed OMR data for 1000+ students per exam cycle",
+      "Processed OMR data for 1000+ student submissions per exam cycle",
       "Detected cross-variant anomalies using statistical comparison pipelines",
       "Handled high-volume CSV ingestion and validation over independent microservices"
     ],
     contributions: [
-      "Architected a scalable microservice backend (Auth, Exam Gen, Analytics) via tRPC + PostgreSQL.",
-      "Built CSV ingestion pipeline mapping messy OMR responses to structured student records.",
-      "Engineered deterministic grading engine featuring partial credit, negative marking, and immutable snapshots.",
-      "Designed algorithmic Cheating Detection System utilizing cross-variant similarity and statistical risk scoring."
+      "Designed microservice backend (Auth, Exam, Analytics) using tRPC + PostgreSQL.",
+      "Built CSV ingestion pipeline mapping OMR responses to structured student records.",
+      "Implemented deterministic grading engine (partial credit, negative marking, snapshots).",
+      "Developed cheating detection using cross-variant similarity + statistical risk scoring."
     ],
     visuals: [
       {
@@ -48,11 +49,6 @@ export const projectsData: Project[] = [
         title: "Grading & Analytics Pipeline",
         src: "/Grading & Analytics Pipeline.png",
         caption: "End-to-end pipeline from CSV ingestion to grading, analytics, and anomaly detection."
-      },
-      {
-        title: "Core Data Model (Exam, Variant, Student Results)",
-        src: "/Core Data Model (Exam, Variant, Student Results).png",
-        caption: "High-level data flow detailing structured mapping and relational boundaries."
       }
     ],
     standoutSections: [
@@ -62,7 +58,7 @@ export const projectsData: Project[] = [
       },
       {
         title: "Scalability & Data Integrity Design",
-        content: "Designed to handle 1000+ students per exam cycle with heavy concurrent workflows. Built on a strictly typed, full-stack architecture running Node.js and React. On the database layer, strict multi-tenant isolation is enforced via PostgreSQL Row-Level Security (RLS) while audit-safe historic integrity is guaranteed by maintaining immutable snapshots of exams mapped to specific submissions."
+        content: "Designed to handle 1000+ students per exam cycle with heavy concurrent workflows. Built on a strictly typed, full-stack architecture running Node.js and React. On the database layer, strict multi-tenant isolation is enforced via PostgreSQL Row-Level Security (RLS) while audit-safe historic integrity is guaranteed by maintaining immutable snapshots of exams mapped to specific submissions. Designed to ensure reproducible grading and audit-safe results through immutable snapshots and variant-specific mappings."
       }
     ],
     tech: ["Node.js", "TypeScript", "tRPC", "PostgreSQL", "Prisma", "React", "Microservices"],
@@ -106,7 +102,7 @@ export const projectsData: Project[] = [
     id: "pillcare",
     slug: "pillcare",
     title: "PillCare",
-    tagline: "Computer vision and NLP pipeline for specialized multi-modal pill identification",
+    tagline: "Multi-modal ML system combining vision and OCR to identify pills under real-world ambiguity.",
     summary: "Deep learning system identifying medications from real-world images (vision + OCR imprints), achieving 84% accuracy via gated modality fusion.",
     metrics: [
       "Achieved 84% identification accuracy using gated modality fusion",
@@ -119,6 +115,7 @@ export const projectsData: Project[] = [
       "Optimized cross-entropy loss across 16 imbalanced drug classes via targeted offline augmentation.",
       "Automated dataset expansion using openFDA APIs and deployed the full graph to edge devices via TFLite."
     ],
+    diagramTitle: "Model Pipeline (Vision + OCR Fusion)",
     diagram: `Image Input
      ↓
 [Vision: MobileNetV2]    [OCR: CRNN]

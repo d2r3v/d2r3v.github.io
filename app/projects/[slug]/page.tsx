@@ -101,7 +101,9 @@ export default async function ProjectCaseStudy({ params }: { params: Promise<{ s
 
               {project.diagram && (
                 <section>
-                  <h2 className="text-2xl font-bold mb-4 tracking-tight border-b border-zinc-200 dark:border-zinc-800 pb-2">System Architecture</h2>
+                  <h2 className="text-2xl font-bold mb-4 tracking-tight border-b border-zinc-200 dark:border-zinc-800 pb-2">
+                    {project.diagramTitle || "System Architecture"}
+                  </h2>
                   <div className="bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-sm font-mono text-zinc-800 dark:text-zinc-300">
                       {project.diagram}

@@ -9,7 +9,7 @@ export default function Projects() {
       <div className="animate-in fade-in slide-in-from-bottom-4 duration-1000 fill-mode-both">
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Projects</h1>
         <p className="text-lg text-zinc-500 dark:text-zinc-400 mb-12 max-w-2xl">
-          A selection of my recent work across backend infrastructure, machine learning, and XR systems.
+          Backend systems, data pipelines, and applied ML projects focused on scalability and real-world constraints.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
