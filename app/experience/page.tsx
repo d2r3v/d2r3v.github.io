@@ -5,42 +5,42 @@ const experiences = [
     role: "Research Software Engineer",
     company: "University of British Columbia",
     date: "Jan 2026 - Present",
-    description: "Refactored a Python-based GitHub analytics system to quantify student contributions through PRs, commits, and review behavior. Developed heuristics to detect over-reliance on AI/LLMs in student codebases, informed by lab research on model-assisted development patterns. Extended analytic visualizations to make AI-reliance indicators interpretable for instructors and reproducible for future studies.",
+    description: "Refactored a Python-based GitHub analytics pipeline to quantify student contributions across PRs, commits, and reviews. Developed heuristics to detect over-reliance on AI/LLMs in codebases, enabling interpretable metrics for instructors and reproducible analysis for research workflows.",
     tags: ["Python", "Data Analytics", "Visualizations"]
   },
   {
     role: "Undergraduate Researcher",
     company: "University of British Columbia",
     date: "Jan 2026 - Present",
-    description: "Designing an elbow-anchored AR interaction technique on Meta Quest 3. Implementing stability algorithms over Meta Body Tracking SDK signals, including smoothing filters, confidence weighting, and drift correction. Developing a real-time data logging approach using Firebase to quantify interaction latency and jitter for a Fitts' Law evaluation.",
+    description: "Developing AR interaction techniques on Meta Quest 3 using body tracking signals. Implemented stability algorithms (smoothing, confidence weighting, drift correction) and built real-time logging pipelines with Firebase to measure latency and jitter for interaction performance evaluation.",
     tags: ["Unity", "Augmented Reality (AR)", "Meta Quest 3"]
   },
   {
     role: "Backend Lead",
     company: "Exam Generation & Analysis System",
     date: "May 2025 - Sep 2025",
-    description: "Architected a microservice-based backend using Node.js, tRPC, Prisma, and PostgreSQL. Designed deterministic data pipelines with snapshot-based state versioning, ensuring reproducible evaluation and auditability. Implemented CI-backed validation and enforced row-level security (RLS) for multi-tenant isolation.",
+    description: "Architected a microservice backend using Node.js, tRPC, Prisma, and PostgreSQL. Built deterministic data pipelines with snapshot-based versioning for reproducible grading and auditability. Enforced row-level security (RLS) for multi-tenant isolation.",
     tags: ["Node.js", "tRPC", "Prisma", "PostgreSQL", "Microservices"]
   },
   {
     role: "Software Engineer",
     company: "Visualization & Emerging Media Studio",
     date: "Sep 2024 - Present",
-    description: "Built and maintained real-time distributed systems supporting multi-user scientific visualization environments. Optimized latency-sensitive pipelines (<80 ms) integrating WebSocket services and heterogeneous input streams. Hardened synchronization and networking layers across distributed deployments to improve reliability.",
+    description: "Built real-time distributed systems for multi-user scientific visualization. Optimized latency-sensitive pipelines (<80 ms) integrating WebSocket services and heterogeneous input streams. Improved synchronization reliability across distributed deployments.",
     tags: ["Unity", "C#", "Distributed Systems", "WebSockets"]
   },
   {
     role: "System Analyst",
     company: "University of British Columbia",
     date: "Sep 2023 - Aug 2024",
-    description: "Built and maintained internal research portal improving documentation and resource sharing across lab teams. Automated infrastructure scripts and optimized workstation configurations, increasing reliability by 25%. Managed network and hardware support for 10+ research labs.",
+    description: "Developed internal research portal improving documentation and resource sharing across lab teams. Automated infrastructure scripts and optimized workstation configurations, improving system reliability by 25%. Supported networking and hardware across 10+ research labs.",
     tags: ["System Administration", "Automation", "IT Support"]
   },
   {
     role: "Java Analyst",
     company: "MergeBase",
     date: "Jan 2023 - Apr 2023",
-    description: "Analyzed 80+ CVEs to strengthen the company’s Software Composition Analysis (SCA) tool. Implemented remediation workflows with backend teams, reducing exploit risk exposure by 15%. Monitored vulnerability data and aligned analysis with emerging security standards.",
+    description: "Analyzed 80+ CVEs to improve Software Composition Analysis (SCA) tooling. Implemented remediation workflows with backend teams, reducing exploit exposure by 15%. Monitored vulnerability trends and aligned analysis with emerging security standards.",
     tags: ["Java", "Security Analysis", "SCA"]
   }
 ]
@@ -51,7 +51,7 @@ export default function Experience() {
       <div className="animate-in fade-in slide-in-from-bottom-4 duration-1000 fill-mode-both">
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Experience</h1>
         <p className="text-lg text-zinc-500 dark:text-zinc-400 mb-12 max-w-2xl leading-relaxed">
-          My professional journey spanning backend infrastructure, applied machine learning, and immersive platforms.
+          Backend-focused experience across distributed systems, data pipelines, and applied ML.
         </p>
 
         <div className="space-y-4">
@@ -66,7 +66,7 @@ export default function Experience() {
                   <div className="hidden md:block absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-zinc-900 dark:bg-zinc-100 ring-4 ring-zinc-50 dark:ring-zinc-950" />
                   {/* Timeline Dot for mobile */}
                   <div className="block md:hidden absolute -left-[37px] top-2 w-2.5 h-2.5 rounded-full bg-zinc-900 dark:bg-zinc-100 ring-4 ring-zinc-50 dark:ring-zinc-950" />
-                  
+
                   <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-50 mb-1">
                     {exp.role}
                   </h3>
