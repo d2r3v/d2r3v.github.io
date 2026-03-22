@@ -12,6 +12,8 @@ export const metadata: Metadata = {
   description: 'Portfolio of Dhruv Bhardwaj - Backend Systems | Applied ML | XR Systems',
 }
 
+import { GoogleAnalytics } from '@next/third-parties/google'
+
 export default function RootLayout({
   children,
 }: {
@@ -27,6 +29,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </ThemeProvider>
+        {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
       </body>
     </html>
   )
