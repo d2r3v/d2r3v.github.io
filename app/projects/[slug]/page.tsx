@@ -30,6 +30,11 @@ export default async function ProjectCaseStudy({ params }: { params: Promise<{ s
             Back to Projects
           </Link>
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">{project.title}</h1>
+          {project.tagline && (
+            <p className="text-2xl font-medium text-zinc-900 dark:text-zinc-100 mb-6">
+              {project.tagline}
+            </p>
+          )}
           {(project.summary || project.description) && (
             <p className="text-xl text-zinc-600 dark:text-zinc-300 leading-relaxed">
               {project.summary || project.description}
@@ -40,10 +45,17 @@ export default async function ProjectCaseStudy({ params }: { params: Promise<{ s
 
 
         <div className="flex flex-wrap gap-4 mb-16">
-          <a href={project.githubUrl} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center h-12 px-6 font-medium text-white bg-zinc-900 dark:bg-zinc-50 dark:text-zinc-900 rounded-lg hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors">
-            <Github className="mr-2 h-5 w-5" />
-            View Source Code
-          </a>
+          {project.githubUrl ? (
+            <a href={project.githubUrl} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center h-12 px-6 font-medium text-white bg-zinc-900 dark:bg-zinc-50 dark:text-zinc-900 rounded-lg hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors">
+              <Github className="mr-2 h-5 w-5" />
+              View Source Code
+            </a>
+          ) : (
+            <span className="inline-flex items-center justify-center h-12 px-6 font-medium text-zinc-500 bg-zinc-100 dark:bg-zinc-800 dark:text-zinc-400 rounded-lg cursor-not-allowed border border-transparent">
+              <Github className="mr-2 h-5 w-5 opacity-50" />
+              Code Upon Request
+            </span>
+          )}
           {project.demoUrl && (
             <a href={project.demoUrl} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center h-12 px-6 font-medium border border-zinc-200 dark:border-zinc-800 bg-transparent hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors text-zinc-900 dark:text-zinc-50 rounded-lg">
               <ExternalLink className="mr-2 h-5 w-5" />
@@ -59,8 +71,21 @@ export default async function ProjectCaseStudy({ params }: { params: Promise<{ s
         </div>
 
         <div className="space-y-12">
-          {project.contributions || project.diagram || project.standoutSections ? (
+          {project.contributions || project.diagram || project.visuals || project.standoutSections || project.metrics ? (
             <>
+              {project.metrics && project.metrics.length > 0 && (
+                <section>
+                  <h2 className="text-2xl font-bold mb-4 tracking-tight border-b border-zinc-200 dark:border-zinc-800 pb-2">Impact & Scale</h2>
+                  <ul className="list-disc pl-6 space-y-2 text-zinc-600 dark:text-zinc-400 text-lg">
+                    {project.metrics.map((metric, i) => (
+                      <li key={i} className="leading-relaxed">
+                        {metric}
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+
               {project.contributions && project.contributions.length > 0 && (
                 <section>
                   <h2 className="text-2xl font-bold mb-4 tracking-tight border-b border-zinc-200 dark:border-zinc-800 pb-2">Key Contributions</h2>
@@ -76,7 +101,7 @@ export default async function ProjectCaseStudy({ params }: { params: Promise<{ s
 
               {project.diagram && (
                 <section>
-                  <h2 className="text-2xl font-bold mb-4 tracking-tight border-b border-zinc-200 dark:border-zinc-800 pb-2">System Overview</h2>
+                  <h2 className="text-2xl font-bold mb-4 tracking-tight border-b border-zinc-200 dark:border-zinc-800 pb-2">System Architecture</h2>
                   <div className="bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-6 overflow-x-auto">
                     <pre className="text-sm font-mono text-zinc-800 dark:text-zinc-300">
                       {project.diagram}
@@ -84,6 +109,19 @@ export default async function ProjectCaseStudy({ params }: { params: Promise<{ s
                   </div>
                 </section>
               )}
+
+              {project.visuals && project.visuals.map((visual, i) => (
+                <section key={i}>
+                  <h2 className="text-2xl font-bold mb-4 tracking-tight border-b border-zinc-200 dark:border-zinc-800 pb-2">{visual.title}</h2>
+                  <div className="bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-4 mb-4">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={visual.src} alt={visual.caption} className="w-full h-auto rounded" />
+                  </div>
+                  <p className="text-sm text-center text-zinc-500 dark:text-zinc-400 italic">
+                    {visual.caption}
+                  </p>
+                </section>
+              ))}
 
               {project.standoutSections && project.standoutSections.map((section, i) => (
                 <section key={i}>
