@@ -35,6 +35,13 @@ export default async function ProjectCaseStudy({ params }: { params: Promise<{ s
               {project.tagline}
             </p>
           )}
+          {project.status && (
+            <div className="mb-6">
+              <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 dark:bg-blue-900/10 dark:text-blue-400 dark:ring-blue-400/20">
+                Status: {project.status}
+              </span>
+            </div>
+          )}
           {(project.summary || project.description) && (
             <p className="text-xl text-zinc-600 dark:text-zinc-300 leading-relaxed">
               {project.summary || project.description}

@@ -1,7 +1,14 @@
 import Link from 'next/link'
 import { Github, Linkedin, FileText, ArrowRight } from 'lucide-react'
+import { projectsData } from './projects/data'
 
 export default function Home() {
+  const featuredProjects = projectsData.filter(p => ["exam-generation", "reflect-ai", "xr-vertebrate"].includes(p.id))
+  // Reorder to desired position
+  const reflectProject = featuredProjects.find(p => p.id === 'reflect-ai');
+  const otherProjects = featuredProjects.filter(p => p.id !== 'reflect-ai');
+  const orderedFeaturedProjects = [otherProjects[0], reflectProject!, otherProjects[1]];
+
   return (
     <div className="container mx-auto px-4 max-w-5xl flex flex-col justify-center h-full min-h-[calc(100vh-16rem)] py-20">
       <div className="max-w-3xl animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-100 fill-mode-both">
@@ -87,53 +94,31 @@ export default function Home() {
         </div>
 
         <div className="flex flex-col gap-8">
-          {/* Project 1 */}
-          <Link
-            href="/projects/exam-generation-analysis"
-            className="group block p-8 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all hover:shadow-sm"
-          >
-            <h3 className="text-2xl font-bold mb-3 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
-              Scalable Exam Generation & Analytics Platform
-            </h3>
-            <p className="text-lg text-zinc-500 dark:text-zinc-400 mb-6 leading-relaxed max-w-3xl">
-              Backend system for generating exam variants, processing 1000+ student OMR data, and running analytics + cheating detection pipelines.
-            </p>
-            <div className="flex flex-wrap gap-2 mb-8">
-              {["Node.js", "TypeScript", "tRPC", "PostgreSQL", "Microservices"].map((t) => (
-                <span key={t} className="px-3 py-1 text-sm font-medium rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300">
-                  {t}
-                </span>
-              ))}
-            </div>
-            <div className="flex items-center text-sm font-medium text-zinc-900 dark:text-zinc-50">
-              Read engineering case study
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </div>
-          </Link>
-
-          {/* Project 2 */}
-          <Link
-            href="/projects/xr-vertebrate-visualization"
-            className="group block p-8 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all hover:shadow-sm"
-          >
-            <h3 className="text-2xl font-bold mb-3 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
-              Interactive 3D Vertebrate Learning System
-            </h3>
-            <p className="text-lg text-zinc-500 dark:text-zinc-400 mb-6 leading-relaxed max-w-3xl">
-              Interactive spatial computing application built in Unity to visualize complex vertebrate anatomy, enabling 100+ students to learn interactively without physical dissection.
-            </p>
-            <div className="flex flex-wrap gap-2 mb-8">
-              {["Unity", "C#", "XR SDKs", "Distributed Rendering"].map((t) => (
-                <span key={t} className="px-3 py-1 text-sm font-medium rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300">
-                  {t}
-                </span>
-              ))}
-            </div>
-            <div className="flex items-center text-sm font-medium text-zinc-900 dark:text-zinc-50">
-              Read engineering case study
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </div>
-          </Link>
+          {orderedFeaturedProjects.map(project => (
+            <Link
+              key={project.id}
+              href={`/projects/${project.slug}`}
+              className="group block p-8 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all hover:shadow-sm"
+            >
+              <h3 className="text-2xl font-bold mb-3 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
+                {project.title}
+              </h3>
+              <p className="text-lg text-zinc-500 dark:text-zinc-400 mb-6 leading-relaxed max-w-3xl">
+                {project.summary}
+              </p>
+              <div className="flex flex-wrap gap-2 mb-8">
+                {project.tech.slice(0, 5).map((t) => (
+                  <span key={t} className="px-3 py-1 text-sm font-medium rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300">
+                    {t}
+                  </span>
+                ))}
+              </div>
+              <div className="flex items-center text-sm font-medium text-zinc-900 dark:text-zinc-50">
+                Read engineering case study
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </div>
+            </Link>
+          ))}
 
           <Link href="/projects" className="sm:hidden flex items-center justify-center h-12 rounded-xl bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-50 font-medium mt-4">
             View all projects
