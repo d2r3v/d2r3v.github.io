@@ -141,6 +141,33 @@ export const projectsData: Project[] = [
     githubUrl: "https://github.com/d2r3v/PillCare",
   },
   {
+    id: "reflect-ai",
+    slug: "reflect-ai",
+    title: "Reflect AI — Memory-Aware Support Companion",
+    tagline: "A full-stack AI system designed to maintain conversational memory, apply safety-aware response routing, and provide structured context persistence across sessions.",
+    summary: "Reflect AI is a full-stack AI system designed to maintain conversational memory, apply safety-aware response routing, and provide structured context persistence across sessions.",
+    overview: "Most AI chat systems treat conversations as stateless interactions. Reflect AI explores how persistent memory and structured execution pipelines can create more reliable and context-aware AI systems.",
+    contributions: [
+      "Designed a memory-aware conversation system with persistent context retrieval",
+      "Built a modular backend architecture (FastAPI) supporting context, tools, and execution pipelines",
+      "Implemented end-to-end authentication with secure token handling in a React Native (Expo) app",
+      "Structured the system for future tool orchestration and multi-step reasoning",
+      "Designed a safety-aware response pipeline (risk classification → mode selection → controlled response flow)"
+    ],
+    standoutSections: [
+      {
+        title: "System Design Highlights",
+        content: "Separation of concerns between mobile client and backend services\nPlanned execution pipeline: context → tool selection → execution → response\nDeterministic handling of context updates to avoid race conditions in future parallel execution\nExtensible architecture for integrating LLM providers and external tools"
+      },
+      {
+        title: "What I Learned",
+        content: "Designing AI systems requires more than model calls — state, safety, and execution flow matter\nClean abstractions early (context, tools, orchestration) prevent major refactors later\nBuilding for extensibility is a balance between not overengineering and not boxing yourself in"
+      }
+    ],
+    tech: ["AI Systems", "Full Stack", "System Design", "Mobile + Backend", "FastAPI", "Pydantic", "JWT Auth", "React Native (Expo)", "Context API", "PBKDF2 password hashing"],
+    githubUrl: "https://github.com/d2r3v/reflect-ai",
+  },
+  {
     id: "burnout-detection",
     slug: "developer-burnout-detection",
     title: "Detecting Developer Burnout from GitHub Activity (Data + ML Pipeline)",
