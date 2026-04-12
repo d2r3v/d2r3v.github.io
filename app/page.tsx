@@ -35,7 +35,7 @@ export default function Home() {
             <Linkedin className="h-5 w-5" />
             <span className="sr-only">LinkedIn</span>
           </a>
-          <a href="/Dhruv_Bhardwaj_SWE.pdf" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center h-12 w-12 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-transparent hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors text-zinc-700 dark:text-zinc-300">
+          <a href="/Dhruv_Bhardwaj_Resume.pdf" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center h-12 w-12 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-transparent hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors text-zinc-700 dark:text-zinc-300">
             <FileText className="h-5 w-5" />
             <span className="sr-only">Resume</span>
           </a>

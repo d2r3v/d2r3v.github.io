@@ -42,9 +42,9 @@ export default function Contact() {
           </a>
 
           <a 
-            href="/Dhruv_Bhardwaj_SWE.pdf" 
+            href="/Dhruv_Bhardwaj_Resume.pdf" 
             target="_blank" 
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="group flex flex-col items-center justify-center p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors"
           >
             <FileText className="w-8 h-8 mb-4 text-zinc-900 dark:text-zinc-50 group-hover:scale-110 transition-transform duration-300" />
