@@ -135,9 +135,19 @@ export default async function ProjectCaseStudy({ params }: { params: Promise<{ s
               {project.standoutSections && project.standoutSections.map((section, i) => (
                 <section key={i}>
                   <h2 className="text-2xl font-bold mb-4 tracking-tight border-b border-zinc-200 dark:border-zinc-800 pb-2">{section.title}</h2>
-                  <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg whitespace-pre-wrap">
-                    {section.content}
-                  </p>
+                  <div className="space-y-8">
+                    {Array.isArray(section.content) ? (
+                      <ul className="list-disc pl-6 space-y-2 text-zinc-600 dark:text-zinc-400 text-lg">
+                        {section.content.map((item, j) => (
+                          <li key={j} className="leading-relaxed">{item}</li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="text-zinc-600 dark:text-zinc-400 whitespace-pre-wrap text-lg leading-relaxed">
+                        {section.content}
+                      </p>
+                    )}
+                  </div>
                 </section>
               ))}
             </>
