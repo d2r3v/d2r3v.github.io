@@ -3,11 +3,7 @@ import { Github, Linkedin, FileText, ArrowRight } from 'lucide-react'
 import { projectsData } from './projects/data'
 
 export default function Home() {
-  const featuredProjects = projectsData.filter(p => ["exam-generation", "reflect-ai", "xr-vertebrate"].includes(p.id))
-  // Reorder to desired position
-  const reflectProject = featuredProjects.find(p => p.id === 'reflect-ai');
-  const otherProjects = featuredProjects.filter(p => p.id !== 'reflect-ai');
-  const orderedFeaturedProjects = [otherProjects[0], reflectProject!, otherProjects[1]];
+  const featuredProjects = projectsData.filter(p => p.featured)
 
   return (
     <div className="container mx-auto px-4 max-w-5xl flex flex-col justify-center h-full min-h-[calc(100vh-16rem)] py-20">
@@ -94,7 +90,7 @@ export default function Home() {
         </div>
 
         <div className="flex flex-col gap-8">
-          {orderedFeaturedProjects.map(project => (
+          {featuredProjects.map(project => (
             <Link
               key={project.id}
               href={`/projects/${project.slug}`}
