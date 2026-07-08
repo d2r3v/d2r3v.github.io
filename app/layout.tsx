@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Dhruv Bhardwaj | Software Engineer',
-  description: 'Portfolio of Dhruv Bhardwaj — software engineer building backend and AI-infrastructure systems: retrieval, ranking, and evaluation.',
+  description: 'Portfolio of Dhruv Bhardwaj — software engineer at Astin Analytics building backend and AI-infrastructure systems: retrieval, ranking, and evaluation.',
 }
 
 import { GoogleAnalytics } from '@next/third-parties/google'
