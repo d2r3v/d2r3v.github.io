@@ -29,3 +29,6 @@
 *.tsbuildinfo
 next-env.d.ts
 /docs/Dhruv_Bhardwaj_Resume.pdf
+
+# local scratch files
+/tmp/
