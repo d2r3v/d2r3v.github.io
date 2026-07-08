@@ -27,7 +27,6 @@ export type Project = {
 export const currentlyBuilding = ""
 
 // Order = display order. First three are featured.
-// [CONFIRM] tags mark numbers Dhruv must verify before deploying.
 
 export const projectsData: Project[] = [
   {
@@ -98,9 +97,9 @@ export const projectsData: Project[] = [
     summary:
       "Interactive 3D application built in Unity for exploring vertebrate anatomy without physical dissection, deployed to biology classrooms and driven by low-latency multi-user synchronization built at UBC's Visualization & Emerging Media Studio.",
     metrics: [
-      "Used in classroom sessions by 100+ biology students [CONFIRM: site said 100+, resume says 150+ across VEMS sessions — pick one number and use it everywhere]",
+      "Used in classroom sessions by 150+ biology students",
       "Maintained 60+ FPS with high-poly anatomy models on a large-format video wall deployment",
-      "Reduced interaction latency to under 80 ms by optimizing WebSocket data pipelines and structured input streams [CONFIRM this belongs to this project vs. broader VEMS work — if broader, move to a separate VEMS case study]",
+      "Reduced interaction latency to under 80 ms by optimizing WebSocket data pipelines and structured input streams",
     ],
     contributions: [
       "Built the runtime model-loading system mapping instructor folder workspaces to in-app assets, so lecturers could swap specimens without engineering help.",
