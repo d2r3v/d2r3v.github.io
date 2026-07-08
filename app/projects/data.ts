@@ -23,6 +23,9 @@ export type Project = {
   featured?: boolean
 }
 
+// Shown on the homepage as a "Currently building" one-liner when non-empty.
+export const currentlyBuilding = ""
+
 // Order = display order. First three are featured.
 // [CONFIRM] tags mark numbers Dhruv must verify before deploying.
 

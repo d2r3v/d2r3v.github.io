@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { Github, Linkedin, FileText, ArrowRight } from 'lucide-react'
-import { projectsData } from './projects/data'
+import { projectsData, currentlyBuilding } from './projects/data'
 
 export default function Home() {
   const featuredProjects = projectsData.filter(p => p.featured)
@@ -17,6 +17,12 @@ export default function Home() {
         <p className="text-lg md:text-xl text-zinc-500 dark:text-zinc-400 mb-10 max-w-2xl leading-relaxed">
           Recently: backend re-architecture and RAG-pipeline security at Astin Analytics; real-time XR visualization infrastructure at UBC.
         </p>
+
+        {currentlyBuilding && (
+          <p className="text-lg text-zinc-500 dark:text-zinc-400 mb-10 max-w-2xl leading-relaxed">
+            <span className="font-medium text-zinc-900 dark:text-zinc-100">Currently building:</span> {currentlyBuilding}
+          </p>
+        )}
 
         <div className="flex flex-wrap items-center gap-4 mb-20">
           <Link href="/projects" className="inline-flex items-center justify-center h-12 px-6 font-medium text-white bg-zinc-900 dark:bg-zinc-50 dark:text-zinc-900 rounded-lg hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors">
