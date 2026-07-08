@@ -27,7 +27,7 @@ const experiences = [
     company: "Visualization & Emerging Media Studio",
     date: "Sep 2024 - Present",
     description: "Built real-time distributed systems for multi-user scientific visualization. Optimized latency-sensitive pipelines (<80 ms) integrating WebSocket services and heterogeneous input streams. Improved synchronization reliability across distributed deployments.",
-    tags: ["Unity", "C#", "Distributed Systems", "WebSockets"]
+    tags: ["Unity", "C#", "Real-Time Systems", "WebSockets"]
   },
   {
     role: "System Analyst",

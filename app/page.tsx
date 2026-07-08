@@ -61,17 +61,7 @@ export default function Home() {
           <div>
             <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 tracking-wider uppercase mb-4">XR / Graphics</h3>
             <div className="flex flex-wrap gap-2">
-              {["Unity", "C#", "Blender"].map((t) => (
-                <span key={t} className="px-3 py-1 text-xs font-medium rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
-                  {t}
-                </span>
-              ))}
-            </div>
-          </div>
-          <div>
-            <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 tracking-wider uppercase mb-4">Frontend</h3>
-            <div className="flex flex-wrap gap-2">
-              {["React", "TypeScript"].map((t) => (
+              {["Unity", "C#"].map((t) => (
                 <span key={t} className="px-3 py-1 text-xs font-medium rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
                   {t}
                 </span>
