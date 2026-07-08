@@ -12,10 +12,10 @@ export default function Home() {
           Dhruv Bhardwaj
         </h1>
         <h2 className="text-2xl md:text-4xl font-light text-zinc-600 dark:text-zinc-400 mb-8">
-          Software Engineer focused on backend systems, applied machine learning, and immersive XR platforms.
+          Software engineer building backend and AI-infrastructure systems — retrieval, ranking, and evaluation.
         </h2>
         <p className="text-lg md:text-xl text-zinc-500 dark:text-zinc-400 mb-10 max-w-2xl leading-relaxed">
-          I build scalable backend infrastructure, machine learning systems, and interactive XR applications. My work spans full-stack platforms, applied AI systems, and real-world immersive software deployed in research and classroom environments.
+          Recently: backend re-architecture and RAG-pipeline security at Astin Analytics; real-time XR visualization infrastructure at UBC.
         </p>
 
         <div className="flex flex-wrap items-center gap-4 mb-20">
